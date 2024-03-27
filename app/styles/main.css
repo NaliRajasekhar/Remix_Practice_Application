@@ -30,7 +30,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: radial-gradient(ellipse at top, #340f5a, var(--color-primary-100));
+  background-image: url('/imgs/bg-imageicon.png');
+  background-size: cover; 
+  background-repeat: no-repeat;
   min-height: 100vh;
 }
 
@@ -51,7 +53,7 @@ body {
 
 .nav-item a {
   text-decoration: none;
-  color: var(--color-primary-10);
+  color: #7c26ce;
 }
 
 .nav-item a:hover,
@@ -115,13 +117,16 @@ body {
   cursor: pointer;
   display: flex;
   margin-top: -25px;
-  margin-left:420px;
+  margin-left:394px;
+  padding-right: 4px;
 }
 @media (max-width:768px) {
   .eye_icon {
     cursor: pointer;
     display: flex;
     margin-top: -25px;
-    margin-left: 285px;
+    margin-left: 255px;
+  padding-right: 4px;
+
   }
 }
