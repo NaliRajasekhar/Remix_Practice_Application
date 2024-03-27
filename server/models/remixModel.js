@@ -18,7 +18,7 @@
         gender: {
             type: DataTypes.STRING
         },
-        ip_address: {
+        password: {
             type: DataTypes.STRING,
         }
     },

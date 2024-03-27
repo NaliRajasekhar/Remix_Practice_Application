@@ -47,7 +47,7 @@ function UsersLIst() {
                   </Link>
                   <img onClick={()=>handleDeleteUser(users.id)} className="delete_icon" src="/imgs/delete-icon.png" alt="Edit Icon"/>
                 </header>
-                <p>{users.ip_address}</p>
+                <p>{users.password}</p>
               </article>
             {/* </Link> onClick={()=>handleEditUser(users.id)}*/}
           </li>
