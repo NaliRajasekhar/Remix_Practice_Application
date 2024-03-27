@@ -43,7 +43,7 @@ function UsersLIst() {
                   </ul>
                   <p>{users.email}</p>
                   <Link to={users.id}>
-                  <img onClick={()=>handleEditUser(users.id)} className="edit_icon" src="/imgs/edit-icon.png" alt="Edit Icon"/>
+                  <img onClick={()=>handleEditUser(users.id)} className="edit_icon" src="/imgs/pencil.png" alt="Edit Icon"/>
                   </Link>
                   <img onClick={()=>handleDeleteUser(users.id)} className="delete_icon" src="/imgs/delete-icon.png" alt="Edit Icon"/>
                 </header>

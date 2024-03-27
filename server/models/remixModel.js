@@ -4,7 +4,6 @@
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true
-
         },
         first_name: {
             type: DataTypes.STRING,

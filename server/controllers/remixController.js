@@ -3,6 +3,19 @@ const { QueryTypes, Model } = require('sequelize');
 
 const User = db.user;
 
+
+const signToken = (payload) => {
+	const jwtSecret = process.env.TOKEN_SECRET;
+	const jwtExpirySeconds = "10h";
+
+	if (!jwtSecret) {
+		throw new Error('JWT_SECRET not set in environment variables');
+	}
+
+	return jwt.sign(payload, jwtSecret, {
+		expiresIn: jwtExpirySeconds,
+	});
+};
 const addUser = async (req, res) => {
    let info = {
       first_name: req.body.first_name,
@@ -12,6 +25,13 @@ const addUser = async (req, res) => {
       password: req.body.password
    };
    const addUser = await User.create(info)
+
+   const token = signToken({ id: addUser[0].id });
+   const users_token = jwt.sign({
+      user_id:addUser[0].id,
+   }, process.env.SECRET_KEY, { expiresIn: "7d" });
+
+
    res.status(200).send(addUser)
 }
 
