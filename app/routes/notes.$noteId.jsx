@@ -14,7 +14,6 @@ export default function NoteDetailsPage() {
         </nav>
         <h1>{note.title}</h1>
       </header>
-      <img className="edit_icon" src="/imgs/edit-icon.png"/>
       <p id="note-details-content">{note.content}</p>
     </main>
   );
