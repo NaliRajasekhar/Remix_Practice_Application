@@ -13,6 +13,9 @@ function MainNavigation() {
         <li className="nav-item">
           <NavLink to="/users">Users List</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink to="/login">Log in</NavLink>
+        </li>
       </ul>
     </nav>
   );
