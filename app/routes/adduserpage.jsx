@@ -3,7 +3,7 @@ import { redirect } from '@remix-run/node';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '~/components/NewNote/NewNote.css';
-
+import { validateform } from '~/components/Validations/validations';
 import {
   Link,
   Form,
@@ -11,42 +11,15 @@ import {
   useTransition as useNavigation,
 } from '@remix-run/react';
 import { addUsers } from '~/utils/Api_Calls';
-import * as yup from 'yup';
 
-const validateform = async (userdata) => {
-  const getValidationErrors = (error) => {
-    const validationErrors = {};
-    error.inner.forEach (error => {
-      if (error.path) {
-        validationErrors[error.path] = error.message;
-      }
-    });
-    return validationErrors;
-  };
 
-  const schema = yup.object ().shape ({
-    first_name: yup.string ().required ('First name is required').nullable (),
-    last_name: yup.string ().required ('Last name is required').nullable (),
-    password: yup.string ().required ('Password is required').nullable (),
-    email: yup
-      .string ()
-      .email ('Please enter a valid email')
-      .required ('Email is required')
-  });
-
-  try {
-    const project = await schema.validate(userdata, {abortEarly:false});
-    return project;
-  } catch (error) {
-    throw getValidationErrors (error);
-  }
-};
 
 function AddUserPage({ users }) {
+
   const data = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
-const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
 
   return (
@@ -77,9 +50,10 @@ const [showPassword, setShowPassword] = useState(false);
         <div className="password-input">
         <label htmlFor="title">Password</label>
       <input type={showPassword ? 'text' : 'password'} name="password" defaultValue={users ? users.password : ""} 
-       style={{borderColor:data?.error["email" && "red"]}} />
-           <div>{data?.error["email"]}</div>
+       style={{borderColor:data?.error["password" && "red"]}} />
       <FontAwesomeIcon icon={faEye} className='eye_icon' onClick={() => setShowPassword(!showPassword)} />
+      <div>{data?.error["password"]}</div>
+
     </div>
         <div className="form-actions">
           {users ?(
@@ -107,6 +81,7 @@ export function links() {
 }
 
 export async function action({ request }) {
+
   const adduserdata = await request.formData();
   const userdata = Object.fromEntries(adduserdata);
   try {
