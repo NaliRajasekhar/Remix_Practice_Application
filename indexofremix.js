@@ -38,13 +38,13 @@ app.get("/get_courses", (req, res) => {
 
   app.post("/add_users", (req, res) => {
 
-    const { first_name, last_name, email, gender, ip_address } = req.body;
+    const { first_name, last_name, email, gender, password } = req.body;
 
     if (!first_name || !last_name || !email) {
         return res.status(400).json({ message: "All fields are required." });
     }
-    const query = "INSERT INTO courses (first_name, last_name, email, gender, ip_address) VALUES (?, ?, ?, ?, ?)";
-    const values = [first_name, last_name, email, gender, ip_address];
+    const query = "INSERT INTO courses (first_name, last_name, email, gender, password) VALUES (?, ?, ?, ?, ?)";
+    const values = [first_name, last_name, email, gender, password];
 
     db.query(query, values, (err, result) => {
         if (err) {

@@ -1,6 +1,9 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { redirect } from '@remix-run/node';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '~/components/NewNote/NewNote.css';
+
 import {
   Link,
   Form,
@@ -24,6 +27,7 @@ const validateform = async (userdata) => {
   const schema = yup.object ().shape ({
     first_name: yup.string ().required ('First name is required').nullable (),
     last_name: yup.string ().required ('Last name is required').nullable (),
+    password: yup.string ().required ('Password is required').nullable (),
     email: yup
       .string ()
       .email ('Please enter a valid email')
@@ -42,6 +46,8 @@ function AddUserPage({ users }) {
   const data = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
+const [showPassword, setShowPassword] = useState(false);
+
 
   return (
     <div>
@@ -64,6 +70,17 @@ function AddUserPage({ users }) {
            style={{borderColor:data?.error["email" && "red"]}} />
            <div>{data?.error["email"]}</div>
         </p>
+        {/* <p>
+          <label htmlFor="title">Password</label>
+          <input type="text" id="title" name="password" defaultValue={users ? users.password : ""} required />
+        </p> */}
+        <div className="password-input">
+        <label htmlFor="title">Password</label>
+      <input type={showPassword ? 'text' : 'password'} name="password" defaultValue={users ? users.password : ""} 
+       style={{borderColor:data?.error["email" && "red"]}} />
+           <div>{data?.error["email"]}</div>
+      <FontAwesomeIcon icon={faEye} className='eye_icon' onClick={() => setShowPassword(!showPassword)} />
+    </div>
         <div className="form-actions">
           {users ?(
               <button disabled={isSubmitting}>
