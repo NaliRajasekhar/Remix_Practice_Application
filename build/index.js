@@ -485,78 +485,148 @@ async function deleteUsers(user_id) {
 }
 
 // app/routes/adduserpage.jsx
-var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var yup = __toESM(require("yup")), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), validateform = async (userdata) => {
+  let getValidationErrors = (error) => {
+    let validationErrors = {};
+    return error.inner.forEach((error2) => {
+      error2.path && (validationErrors[error2.path] = error2.message);
+    }), validationErrors;
+  }, schema = yup.object().shape({
+    first_name: yup.string().required("First name is required").nullable(),
+    last_name: yup.string().required("Last name is required").nullable(),
+    email: yup.string().email("Please enter a valid email").required("Email is required")
+  });
+  try {
+    return await schema.validate(userdata, { abortEarly: !1 });
+  } catch (error) {
+    throw getValidationErrors(error);
+  }
+};
 function AddUserPage({ users }) {
   let data = (0, import_react5.useActionData)(), isSubmitting = (0, import_react5.useTransition)().state === "submitting";
   return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Form, { method: "post", id: "note-form", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { htmlFor: "first_name", children: "First Name" }, void 0, !1, {
         fileName: "app/routes/adduserpage.jsx",
-        lineNumber: 23,
+        lineNumber: 50,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("input", { type: "text", id: "title", name: "first_name", defaultValue: users ? users.first_name : "", required: !0 }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+        "input",
+        {
+          type: "text",
+          id: "title",
+          name: "first_name",
+          defaultValue: users ? users.first_name : "",
+          style: { borderColor: data == null ? void 0 : data.error["red"] }
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/adduserpage.jsx",
+          lineNumber: 51,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: data == null ? void 0 : data.error.first_name }, void 0, !1, {
         fileName: "app/routes/adduserpage.jsx",
-        lineNumber: 24,
-        columnNumber: 11
+        lineNumber: 53,
+        columnNumber: 12
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/adduserpage.jsx",
-      lineNumber: 22,
+      lineNumber: 49,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { htmlFor: "last_name", children: "Last Name" }, void 0, !1, {
         fileName: "app/routes/adduserpage.jsx",
-        lineNumber: 27,
+        lineNumber: 56,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("input", { type: "text", id: "title", name: "last_name", defaultValue: users ? users.last_name : "", required: !0 }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+        "input",
+        {
+          type: "text",
+          id: "title",
+          name: "last_name",
+          defaultValue: users ? users.last_name : "",
+          style: { borderColor: data == null ? void 0 : data.error["red"] }
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/adduserpage.jsx",
+          lineNumber: 57,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: data == null ? void 0 : data.error.last_name }, void 0, !1, {
         fileName: "app/routes/adduserpage.jsx",
-        lineNumber: 28,
-        columnNumber: 11
+        lineNumber: 59,
+        columnNumber: 12
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/adduserpage.jsx",
-      lineNumber: 26,
+      lineNumber: 55,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { htmlFor: "title", children: "E-Mail" }, void 0, !1, {
         fileName: "app/routes/adduserpage.jsx",
-        lineNumber: 31,
+        lineNumber: 62,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("input", { type: "text", id: "title", name: "email", defaultValue: users ? users.email : "", required: !0 }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+        "input",
+        {
+          type: "text",
+          id: "title",
+          name: "email",
+          defaultValue: users ? users.email : "",
+          style: { borderColor: data == null ? void 0 : data.error["red"] }
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/adduserpage.jsx",
+          lineNumber: 63,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: data == null ? void 0 : data.error.email }, void 0, !1, {
         fileName: "app/routes/adduserpage.jsx",
-        lineNumber: 32,
-        columnNumber: 11
+        lineNumber: 65,
+        columnNumber: 12
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/adduserpage.jsx",
-      lineNumber: 30,
+      lineNumber: 61,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "form-actions", children: users ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("button", { disabled: isSubmitting, children: isSubmitting ? "Updating..." : "Update User" }, void 0, !1, {
       fileName: "app/routes/adduserpage.jsx",
-      lineNumber: 36,
+      lineNumber: 69,
       columnNumber: 11
     }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("button", { disabled: isSubmitting, children: isSubmitting ? "Adding..." : "Add User" }, void 0, !1, {
       fileName: "app/routes/adduserpage.jsx",
-      lineNumber: 40,
+      lineNumber: 73,
       columnNumber: 11
     }, this) }, void 0, !1, {
       fileName: "app/routes/adduserpage.jsx",
-      lineNumber: 34,
+      lineNumber: 67,
       columnNumber: 9
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/adduserpage.jsx",
-    lineNumber: 21,
+    lineNumber: 48,
     columnNumber: 7
   }, this) }, void 0, !1, {
     fileName: "app/routes/adduserpage.jsx",
-    lineNumber: 20,
+    lineNumber: 47,
     columnNumber: 5
   }, this);
 }
@@ -566,7 +636,12 @@ function links2() {
 }
 async function action({ request }) {
   let adduserdata = await request.formData(), userdata = Object.fromEntries(adduserdata);
-  return await addUsers(userdata), (0, import_node2.redirect)("/users");
+  try {
+    let newuserdata = await validateform(userdata);
+    return await addUsers(newuserdata), (0, import_node2.redirect)("/users");
+  } catch (error) {
+    return console.log("error message", error.message), { error };
+  }
 }
 
 // app/routes/users.$user_id.jsx
@@ -1093,7 +1168,7 @@ function links9() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-AXWEPT5H.js", imports: ["/build/_shared/chunk-SLEKSNGD.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-OFBR2F3W.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/adduserpage": { id: "routes/adduserpage", parentId: "root", path: "adduserpage", index: void 0, caseSensitive: void 0, module: "/build/routes/adduserpage-FPKVEPW4.js", imports: ["/build/_shared/chunk-MUIY54FV.js", "/build/_shared/chunk-6UH7E4TX.js", "/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-VXBEBPVD.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-LKEH2FSI.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-TEYHS5V6.js", imports: ["/build/_shared/chunk-6UH7E4TX.js", "/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-FBHBAM77.js", "/build/_shared/chunk-VXBEBPVD.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "root", path: "notes/:noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-FIVPGRXA.js", imports: ["/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-VXBEBPVD.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/users": { id: "routes/users", parentId: "root", path: "users", index: void 0, caseSensitive: void 0, module: "/build/routes/users-GZ2PWGXX.js", imports: ["/build/_shared/chunk-FBHBAM77.js", "/build/_shared/chunk-VXBEBPVD.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/users.$user_id": { id: "routes/users.$user_id", parentId: "root", path: "users/:user_id", index: void 0, caseSensitive: void 0, module: "/build/routes/users.$user_id-ZBALAW3K.js", imports: ["/build/_shared/chunk-MUIY54FV.js", "/build/_shared/chunk-6UH7E4TX.js", "/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-VXBEBPVD.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "729a3458", hmr: void 0, url: "/build/manifest-729A3458.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-AXWEPT5H.js", imports: ["/build/_shared/chunk-SLEKSNGD.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-OFBR2F3W.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/adduserpage": { id: "routes/adduserpage", parentId: "root", path: "adduserpage", index: void 0, caseSensitive: void 0, module: "/build/routes/adduserpage-RVF4V7XI.js", imports: ["/build/_shared/chunk-RQZGNQSI.js", "/build/_shared/chunk-6UH7E4TX.js", "/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-5JODI6LZ.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-LKEH2FSI.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-ZJWUNJ35.js", imports: ["/build/_shared/chunk-6UH7E4TX.js", "/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-FBHBAM77.js", "/build/_shared/chunk-5JODI6LZ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "root", path: "notes/:noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-6MLB2N3K.js", imports: ["/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-5JODI6LZ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/users": { id: "routes/users", parentId: "root", path: "users", index: void 0, caseSensitive: void 0, module: "/build/routes/users-BRXKMV6M.js", imports: ["/build/_shared/chunk-FBHBAM77.js", "/build/_shared/chunk-5JODI6LZ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/users.$user_id": { id: "routes/users.$user_id", parentId: "root", path: "users/:user_id", index: void 0, caseSensitive: void 0, module: "/build/routes/users.$user_id-VB54UI3E.js", imports: ["/build/_shared/chunk-RQZGNQSI.js", "/build/_shared/chunk-6UH7E4TX.js", "/build/_shared/chunk-KZSXZLYW.js", "/build/_shared/chunk-5JODI6LZ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "055b4d4e", hmr: void 0, url: "/build/manifest-055B4D4E.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { v2_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !1, v2_headers: !1, v2_meta: !1, v2_normalizeFormMethod: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
