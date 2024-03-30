@@ -8,23 +8,25 @@ import {
   Link,
   Form,
   useActionData,
+  useFetcher ,
   useTransition as useNavigation,
 } from '@remix-run/react';
 import { addUsers } from '~/utils/Api_Calls';
 
-
+// const fetcher = useFetcher({ key: "add-to-bag" });
 
 function AddUserPage({ users }) {
 
   const data = useActionData();
+
+  
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   const [showPassword, setShowPassword] = useState(true);
 
-
   return (
     <div>
-      <Form method="post" id="note-form" >
+      <Form method="post" id="note-form">
         <p>
           <label htmlFor="first_name">First Name</label>
           <input type="text" id="title" name="first_name" defaultValue={users ? users.first_name : ""}
@@ -68,7 +70,6 @@ function AddUserPage({ users }) {
           }
         
         </div>
-
       </Form>
     </div>
   );

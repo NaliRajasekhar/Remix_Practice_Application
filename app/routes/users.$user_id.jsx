@@ -1,11 +1,16 @@
 import AddUserPage from './adduserpage.jsx';
-import {useLoaderData} from '@remix-run/react';
+import {useLoaderData, useParams} from '@remix-run/react';
 import {redirect} from '@remix-run/node';
 import {getOneUser, addUsers, updateUsers} from '~/utils/Api_Calls.js';
 import styles from '~/components/NewNote/NewNote.css';
 import { validateform } from '~/components/Validations/validations';
 
+
 const editUser = () => {
+
+  const params=useParams();
+
+
   const users = useLoaderData ();
   return <AddUserPage users={users} />;
 };
