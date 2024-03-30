@@ -6,6 +6,8 @@ import { useNavigate } from '@remix-run/react';
 function UsersLIst() {
 
   const users = useLoaderData();
+
+  
   const navigate = useNavigate();
   const handleEditUser=(id)=>{
     navigate(`/users/${id}`)
